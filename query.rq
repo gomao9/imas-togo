@@ -7,8 +7,7 @@ PREFIX foaf: <http://xmlns.com/foaf/0.1/>
 SELECT *
 WHERE {
   ?idol rdf:type imas:Idol.
-  optional { ?idol schema:name ?name_ja. filter( lang(?name_ja) = 'ja') }.
-  optional { ?idol schema:name ?name_en. filter( lang(?name_en) = 'en') }.
+  optional { ?idol schema:name ?name. filter( lang(?name) = 'ja') }.
   optional { ?idol imas:nameKana ?nameKana. }.
   optional { ?idol schema:height ?height. }.
   optional { ?idol schema:weight ?weight. }.
@@ -17,3 +16,4 @@ WHERE {
   optional { ?idol foaf:age ?age. }.
 }
 order by ?nameKana
+limit 10

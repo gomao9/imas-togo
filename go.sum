@@ -12,6 +12,8 @@ github.com/alexflint/go-arg v0.0.0-20160306200701-e71d6514f40a h1:Bc+P30eTWphhue
 github.com/alexflint/go-arg v0.0.0-20160306200701-e71d6514f40a/go.mod h1:PHxo6ZWOLVMZZgWSAqBynb/KhIqoGO6WKwOVX7rM9dg=
 github.com/alexkohler/nakedret v0.0.0-20190321114339-98ae56e4e0f3 h1:D9Jt+9c/Rx7wWsk+2M5vt2uI4qiavhxOgQZsXYMO/Tg=
 github.com/alexkohler/nakedret v0.0.0-20190321114339-98ae56e4e0f3/go.mod h1:tfDQbtPt67HhBK/6P0yNktIX7peCxfOp0jO9007DrLE=
+github.com/b4b4r07/go-finder v0.0.1 h1:btgrZHir6TcUIpFe/qdpNB1V5zFEbX3Qb3aE250BB/E=
+github.com/b4b4r07/go-finder v0.0.1/go.mod h1:TBc0wHBkU0kofzNTY5Fal+Giv8dk2qb2HNaGfcpER2w=
 github.com/client9/misspell v0.3.4 h1:ta993UF76GwbvJcIo3Y68y/M3WxlpEHPWIGDkJYwzJI=
 github.com/client9/misspell v0.3.4/go.mod h1:qj6jICC3Q7zFZvVWo7KLAzC3yx5G7kyvSDkc90ppPyw=
 github.com/creack/pty v1.1.7/go.mod h1:lj5s0c3V2DBrqTV7llrYr5NG6My20zk30Fl46Y7DoTY=
@@ -58,6 +60,8 @@ github.com/onsi/ginkgo v1.10.3/go.mod h1:lLunBs/Ym6LB5Z9jYTR76FiuTmxDTDusOGeTQH+
 github.com/onsi/gomega v1.7.1/go.mod h1:XdKZgCCFLUoM/7CFJVPcG8C1xQ1AJ0vpAezJrB7JYyY=
 github.com/opennota/check v0.0.0-20180911053232-0c771f5545ff h1:lRHufowVGvUvxGsPveAZOpSa/9T5Gpxg6d7UbHCA9MQ=
 github.com/opennota/check v0.0.0-20180911053232-0c771f5545ff/go.mod h1:tydB+MZxWpY8M/NRu7jQhND/mXuLAPsKcSV6JkzofsA=
+github.com/pkg/errors v0.8.1 h1:iURUrRGxPUNPdy5/HRSm+Yj6okJ6UtLINN0Q9M4+h3I=
+github.com/pkg/errors v0.8.1/go.mod h1:bwawxfHBFNV+L2hUp1rHADufV3IMtnDRdf1r5NINEl0=
 github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
 github.com/rogpeppe/go-internal v1.3.0/go.mod h1:M8bDsm7K2OlrFYOpmOWEs/qY81heoFRclV5y23lUDJ4=
 github.com/rogpeppe/go-internal v1.3.2/go.mod h1:xXDCJY+GAPziupqXw64V24skbSoqbTEfhy4qGm1nDQc=
