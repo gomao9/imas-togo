@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"log"
+	"strings"
 
 	"github.com/b4b4r07/go-finder"
 	"github.com/knakk/sparql"
@@ -43,7 +44,18 @@ type idol struct {
 }
 
 func (i *idol) displayName() string {
-	return fmt.Sprintf("%s(%s) %s(%s) %s(%s)", i.Name, i.NameKana, i.AlternateName, i.AlternateNameKana, i.GivenName, i.GivenNameKana)
+	var names = []string{}
+
+	if i.Name != "" {
+		names = append(names, fmt.Sprintf("%s(%s)", i.Name, i.NameKana))
+	}
+	if i.AlternateName != "" {
+		names = append(names, fmt.Sprintf("%s(%s)", i.AlternateName, i.AlternateNameKana))
+	}
+	if len(names) == 0 && i.GivenName != "" {
+		names = append(names, fmt.Sprintf("%s(%s)", i.GivenName, i.GivenNameKana))
+	}
+	return strings.Join(names, " ")
 }
 
 func mapToStruct(m map[string]string, val *idol) error {
