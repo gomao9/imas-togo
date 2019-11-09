@@ -1,13 +1,14 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"log"
 
 	"github.com/b4b4r07/go-finder"
-	"github.com/knakk/rdf"
 	"github.com/knakk/sparql"
+	"github.com/mitchellh/mapstructure"
 )
 
 func main() {
@@ -18,7 +19,7 @@ func main() {
 
 	items := finder.NewItems()
 	for _, idol := range idols() {
-		items.Add(idol.name, idol)
+		items.Add(idol.displayName(), idol)
 	}
 
 	selectedItems, err := fzf.Select(items)
@@ -26,31 +27,36 @@ func main() {
 		log.Fatal(err)
 	}
 	for _, item := range selectedItems {
-		fmt.Printf("name:%s\n", item.(map[string]rdf.Term)["name"].String())
+		fmt.Printf("height:%s\n", item.(idol).Height)
 	}
-
-	// fmt.Println(idols())
 }
 
 type idol struct {
-	name string
+	Name              string
+	NameKana          string
+	AlternateName     string
+	AlternateNameKana string
+	GivenName         string
+	GivenNameKana     string
+	Height            string
+	Weight            string
 }
 
-func name(idol map[string]rdf.Term) string {
-	var name rdf.Term
-	switch {
-	case idol["name"] != nil:
-		name = idol["name"]
-	case idol["alternateName"] != nil:
-		name = idol["alternateName"]
-	case idol["givenName"] != nil:
-		name = idol["givenName"]
-	default:
-		return ""
+func (i *idol) displayName() string {
+	return fmt.Sprintf("%s(%s) %s(%s) %s(%s)", i.Name, i.NameKana, i.AlternateName, i.AlternateNameKana, i.GivenName, i.GivenNameKana)
+}
+
+func mapToStruct(m map[string]string, val *idol) error {
+	tmp, err := json.Marshal(m)
+	if err != nil {
+		return err
 	}
-	return name.String()
+	err = json.Unmarshal(tmp, val)
+	if err != nil {
+		return err
+	}
+	return nil
 }
-
 func idols() (idols []idol) {
 	const endpoint = "https://sparql.crssnky.xyz/spql/imas"
 	const filename = "./query.rq"
@@ -65,7 +71,18 @@ func idols() (idols []idol) {
 	}
 
 	for _, m := range res.Solutions() {
-		idols = append(idols, idol{name: name(m)})
+		newMap := map[string]string{}
+
+		for key, value := range m {
+			newMap[key] = value.String()
+		}
+		var result idol
+
+		err := mapstructure.Decode(newMap, &result)
+		if err != nil {
+			log.Fatal(err)
+		}
+		idols = append(idols, result)
 	}
 
 	return
