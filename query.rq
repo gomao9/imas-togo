@@ -17,4 +17,3 @@ WHERE {
   optional { ?idol foaf:age ?age. }.
 }
 order by ?nameKana
-limit 10
