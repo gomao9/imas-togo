@@ -1,3 +1,5 @@
+PREFIX im: <http://imgpedia.dcc.uchile.cl/resource/>
+PREFIX sc: <http://purl.org/science/owl/sciencecommons/>
 
 PREFIX schema: <http://schema.org/>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
@@ -7,9 +9,12 @@ PREFIX foaf: <http://xmlns.com/foaf/0.1/>
 SELECT *
 WHERE {
   ?idol rdf:type imas:Idol.
-  optional { ?idol schema:name ?name_ja. filter( lang(?name_ja) = 'ja') }.
-  optional { ?idol schema:name ?name_en. filter( lang(?name_en) = 'en') }.
+  optional { ?idol schema:name ?name. filter( lang(?name) = 'ja') }.
   optional { ?idol imas:nameKana ?nameKana. }.
+  optional { ?idol schema:givenName ?givenName. filter( lang(?givenName) = 'ja') }.
+  optional { ?idol imas:givenNameKana ?givenNameKana }.
+  optional { ?idol schema:alternateName ?alternateName. filter( lang(?alternateName) = 'ja') }.
+  optional { ?idol imas:alternateNameKana ?alternateNameKana }.
   optional { ?idol schema:height ?height. }.
   optional { ?idol schema:weight ?weight. }.
   optional { ?idol schema:gender ?gender. }.
@@ -17,4 +22,3 @@ WHERE {
   optional { ?idol foaf:age ?age. }.
 }
 order by ?nameKana
-limit 10
